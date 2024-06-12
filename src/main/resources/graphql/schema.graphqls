@@ -24,7 +24,7 @@ type Mutation {
     createPet(petRequest: PetRequest): Pet
     updatePet(id: ID!, petRequest: PetRequest): Pet
     deletePet(id: ID!): String
-    createVisits(visitsRequest: VisitsRequest): Visits
+    createVisits(visitsRequest: VisitsRequest!): Visits
     updateVisits(id: ID!, status: String): Visits
     deleteVisits(id: ID!): String
     createConsultations(consultationsRequest: ConsultationsRequest): Consultations
@@ -98,9 +98,9 @@ type Visits {
 
 input VisitsRequest {
     date: String!
-    reason: String
+    reason: String!
     idPatient: String!
-    idDoctor: String
+    idDoctor: String!
     status: String
     reserved: Boolean
 }

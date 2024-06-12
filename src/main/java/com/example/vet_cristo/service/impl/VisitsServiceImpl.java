@@ -31,15 +31,18 @@ public class VisitsServiceImpl implements VisitsService {
 
     @Override
     public Visits createVisits(VisitsRequest visitsRequest)  throws ParseException{
-        DateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //DateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        DateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date formattedDateTime = dateTimeFormat.parse(visitsRequest.getDate());
 
         Visits newVisits = new Visits();
+        //newVisits.setDate(formattedDateTime);
         newVisits.setDate(formattedDateTime);
         newVisits.setReason(visitsRequest.getReason());
         newVisits.setIdPatient(visitsRequest.getIdPatient());
         newVisits.setIdDoctor(visitsRequest.getIdDoctor());
-        newVisits.setStatus(String.valueOf(VisitsStatus.PENDIENTE));
+        //newVisits.setStatus(String.valueOf(VisitsStatus.PENDIENTE));
+        newVisits.setStatus(visitsRequest.getStatus() != null ? visitsRequest.getStatus() : VisitsStatus.PENDIENTE.name());
         newVisits.setReserved(visitsRequest.getReserved());
 
         return visitsRepository.save(newVisits);
