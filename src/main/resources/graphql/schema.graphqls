@@ -6,6 +6,12 @@ type Query {
     getPetById(id: ID!): Pet
     getAllPets: [Pet]
     getPetsByUserId(userId: ID!): [Pet]
+    getAllVisits: [Visits]
+    getVisitsByReserved(reserved: Boolean!): [Visits]
+    getVisitsByDoctor(idDoctor: String!): [Visits]
+    getConsultationsByIdPatient(id: ID!): [Consultations]
+    getAllVaccines: [Vaccine]
+    getVaccineByIdPatient(id: ID!): Vaccine
 }
 
 type Mutation {
@@ -18,6 +24,12 @@ type Mutation {
     createPet(petRequest: PetRequest): Pet
     updatePet(id: ID!, petRequest: PetRequest): Pet
     deletePet(id: ID!): String
+    createVisits(visitsRequest: VisitsRequest): Visits
+    updateVisits(id: ID!, status: String): Visits
+    deleteVisits(id: ID!): String
+    createConsultations(consultationsRequest: ConsultationsRequest): Consultations
+    deleteConsultations(id: ID!): String
+    createVaccine(vaccineRequest: VaccineRequest): Vaccine
 }
 
 type Rol {
@@ -72,4 +84,69 @@ input PetRequest {
     gender: String!
     color: String!
     userId: String!
+}
+
+type Visits {
+    id: ID
+    date: String!
+    reason: String
+    idPatient: String!
+    idDoctor: String
+    status: String
+    reserved: Boolean
+}
+
+input VisitsRequest {
+    date: String!
+    reason: String
+    idPatient: String!
+    idDoctor: String
+    status: String
+    reserved: Boolean
+}
+
+type Consultations {
+    id: ID
+    patientId: String!
+    doctorId: String!
+    date: String
+    weight: Float
+    height: Int
+    temperature: Float
+    heartRate: Int
+    respiratoryRate: Int
+    diagnosis: String!
+    treatment: String!
+    notes: String
+}
+
+input ConsultationsRequest {
+    patientId: String!
+    doctorId: String!
+    date: String
+    weight: Float
+    height: Int
+    temperature: Float
+    heartRate: Int
+    respiratoryRate: Int
+    diagnosis: String!
+    treatment: String!
+    notes: String
+}
+
+type Vaccine {
+    id: ID
+    patientId: String!
+    vaccineName: String!
+    administeredDate: String
+    nextAdministeredDate: String
+    doses: Int
+}
+
+input VaccineRequest {
+    patientId: String!
+    vaccineName: String!
+    administeredDate: String
+    nextAdministeredDate: String
+    doses: Int
 }
