@@ -4,17 +4,22 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
+    /*@Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+       //Redirige cualquier ruta que no contenga un punto a `index.html`
+        registry.addViewController("/{spring:[\\w\\-]+}")
+                .setViewName("forward:/");*/
+       //registry.addViewController("/**/{spring:[\\w\\-]+}")
+         //      .setViewName("forward:/");
+    //}
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        // Redirige cualquier ruta que no contenga un punto a `index.html`
         registry.addViewController("/{spring:[\\w\\-]+}")
                 .setViewName("forward:/");
         registry.addViewController("/**/{spring:[\\w\\-]+}")
@@ -28,6 +33,3 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowCredentials(true);
     }
 }
-
-
-
