@@ -12,6 +12,8 @@ type Query {
     getConsultationsByIdPatient(id: ID!): [Consultations]
     getAllVaccines: [Vaccine]
     getVaccineByIdPatient(id: ID!): Vaccine
+    getAllAnalysis: [Analysis]
+    getAnalysisByIdPatient(id: ID!): Analysis
 }
 
 type Mutation {
@@ -30,6 +32,7 @@ type Mutation {
     createConsultations(consultationsRequest: ConsultationsRequest): Consultations
     deleteConsultations(id: ID!): String
     createVaccine(vaccineRequest: VaccineRequest): Vaccine
+    createAnalysis(analysisRequest: AnalysisRequest): Analysis
 }
 
 type Rol {
@@ -149,4 +152,22 @@ input VaccineRequest {
     administeredDate: String
     nextAdministeredDate: String
     doses: Int
+}
+
+type Analysis {
+    id: ID
+    patientId: String!
+    analysisType: String!
+    results: String!
+    analysisDate: String
+    notes: String
+}
+
+input AnalysisRequest {
+    id: ID
+    patientId: String!
+    analysisType: String!
+    results: String!
+    analysisDate: String
+    notes: String
 }
