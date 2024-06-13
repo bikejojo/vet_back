@@ -5,11 +5,13 @@ import com.example.vet_cristo.model.Rol;
 import com.example.vet_cristo.model.Users;
 import com.example.vet_cristo.service.dto.UserRequest;
 import org.apache.catalina.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface UserService {
+public interface UserService  {
 
     List<Users> getAllUsers();
 
@@ -20,5 +22,6 @@ public interface UserService {
     Users updateUser(String id, Users user);
 
     Optional<Users> getUserById(String id);
+
 
 }
