@@ -22,31 +22,31 @@ public class VisitsController {
     @Autowired
     private VisitsService visitsService;
 
-    @PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO')  ")
+    //@PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO')  ")
     @QueryMapping
     public List<Visits> getAllVisits() {
         return visitsService.getAllVisits();
     }
 
-    @PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') or hasRole('CLIENTE') ")
+    //@PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') or hasRole('CLIENTE') ")
     @MutationMapping
     public Visits createVisits(@Argument VisitsRequest visitsRequest) throws ParseException {
         return visitsService.createVisits(visitsRequest);
     }
 
-    @PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') or hasRole('CLIENTE') ")
+    //@PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') or hasRole('CLIENTE') ")
     @MutationMapping
     public Visits updateVisits(@Argument String id, @Argument String status) {
         return visitsService.updateVisits(id, status);
     }
 
-    @PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO')  ")
+    //@PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO')  ")
     @QueryMapping
     public List<Visits> getVisitsByDoctor(@Argument String idDoctor) {
         return visitsService.getVisitsByIdDoctor(idDoctor);
     }
 
-    @PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') or hasRole('CLIENTE') ")
+    //@PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') or hasRole('CLIENTE') ")
     @QueryMapping
     public List<Visits> getVisitsByReserved(@Argument Boolean reserved) {
         return visitsService.getVisitsByReserve(reserved);

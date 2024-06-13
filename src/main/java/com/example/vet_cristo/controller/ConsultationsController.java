@@ -23,13 +23,13 @@ public class ConsultationsController {
     private ConsultationsService consultationsService;
 
 
-    @PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO')  ")
+    //@PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO')  ")
     @MutationMapping
     public Consultations createConsultations(@Argument ConsultationsRequest consultationsRequest) throws ParseException {
         return consultationsService.createConsultations(consultationsRequest);
     }
 
-    @PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') or hasRole('CLIENTE') ")
+    //@PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') or hasRole('CLIENTE') ")
     @QueryMapping
     public List<Consultations> getConsultationsByIdPatient(@Argument String id) {
         return consultationsService.getConsultationsByIdPatient(id);

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vet-cristo-deployment
+  labels:
+    app: vet-cristo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: vet-cristo
+  template:
+    metadata:
+      labels:
+        app: vet-cristo
+    spec:
+      containers:
+      - name: vet-cristo
+        image: jojoedu/vet_cristo:latest  # Asegúrate de que la imagen sea correcta
+        ports:
+        - containerPort: 8081
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2Gi
+          requests:
+            cpu: 250m
+            memory: 1Gi
+        env:
+        - name: SPRING_DATA_MONGODB_URI
+          value: mongodb+srv://osder:78575353@cluster0.jdqqlsg.mongodb.net/vet_cristo?retryWrites=true&w=majority&appName=Cluster0
+          

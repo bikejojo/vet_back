@@ -23,19 +23,19 @@ public class VaccineController {
     @Autowired
     private VaccineService vaccineService;
 
-    @PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO')  ")
+    //@PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO')  ")
     @MutationMapping
     public Vaccine createVaccine(@Argument VaccineRequest vaccineRequest) throws ParseException {
         return vaccineService.createVaccine(vaccineRequest);
     }
 
-    @PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO')  ")
+    //@PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO')  ")
     @QueryMapping
     public List<Vaccine> getAllVaccines() {
         return vaccineService.getAllVaccine();
     }
 
-    @PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') or hasRole('CLIENTE') ")
+    //@PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') or hasRole('CLIENTE') ")
     @QueryMapping
     public List<Vaccine> getVaccineByIdPatient(@Argument String id) {
         return vaccineService.getVaccineByIdPatient(id);

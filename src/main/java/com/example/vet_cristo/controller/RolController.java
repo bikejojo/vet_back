@@ -23,13 +23,13 @@ public class RolController {
     @Autowired
     private RolService rolService;
 
-    @PreAuthorize("hasRole('ADMINISTRADOR')")
+    //@PreAuthorize("hasRole('ADMINISTRADOR')")
     @QueryMapping
     public Optional<Rol> getRolById(@Argument String id) {
         return rolService.getRolById(id);
     }
 
-    @PreAuthorize("hasRole('ADMINISTRADOR')")
+    //@PreAuthorize("hasRole('ADMINISTRADOR')")
     @QueryMapping
     public List<Rol> getAllRoles() {
         return rolService.getAllRoles().stream() /*se actualizo para manejo de null*/
@@ -37,7 +37,7 @@ public class RolController {
                 .collect(Collectors.toList());
     }
 
-    @PreAuthorize("hasRole('ADMINISTRADOR')")
+    //@PreAuthorize("hasRole('ADMINISTRADOR')")
     @MutationMapping
     public Rol createRol(@Argument RolRequest rolRequest) {
         Rol rol = new Rol();

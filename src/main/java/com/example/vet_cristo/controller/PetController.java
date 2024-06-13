@@ -23,25 +23,25 @@ public class PetController {
     @Autowired
     private PetService petService;
 
-    @PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO')  ")
+    //@PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO')  ")
     @QueryMapping
     public Optional<Pet> getPetById(@Argument String id) {
         return petService.getPetById(id);
     }
 
-    @PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') ")
+    //@PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') ")
     @QueryMapping
     public List<Pet> getAllPets() {
         return petService.getAllPet();
     }
 
-    @PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') or hasRole('CLIENTE') ")
+    //@PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') or hasRole('CLIENTE') ")
     @MutationMapping
     public Pet createPet(@Argument PetRequest petRequest) {
         return petService.createPet(petRequest);
     }
 
-    @PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') or hasRole('CLIENTE') ")
+    //@PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') or hasRole('CLIENTE') ")
     @QueryMapping
     public List<Pet> getPetsByUserId(@Argument String userId) {
         return petService.getPetsByUserId(userId);

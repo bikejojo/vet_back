@@ -27,7 +27,7 @@ public class WebConfig implements WebMvcConfigurer {
     }
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:3000") // Permite solicitudes desde este origen
+                .allowedOrigins("https://6b9d-181-115-214-197.ngrok-free.app")  //("http://localhost:3000") // Permite solicitudes desde este origen
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);

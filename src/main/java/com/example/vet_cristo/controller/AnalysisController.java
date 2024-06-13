@@ -20,19 +20,19 @@ public class AnalysisController {
     @Autowired
     private AnalisysService analysisService;
 
-    @PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') ")
+    //@PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') ")
     @MutationMapping
     public Analysis createAnalysis(@Argument AnalysisRequest analysisRequest) throws ParseException {
         return analysisService.createAnalysis(analysisRequest);
     }
 
-    @PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO')  ")
+    //@PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO')  ")
     @QueryMapping
     public List<Analysis> getAllAnalysis() {
         return analysisService.getAllAnalysis();
     }
 
-    @PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') or hasRole('CLIENTE') ")
+    //@PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') or hasRole('CLIENTE') ")
     @QueryMapping
     public List<Analysis> getAnalysisByIdPatient(@Argument String id) {
         return analysisService.getAnalysisByIdPatient(id);

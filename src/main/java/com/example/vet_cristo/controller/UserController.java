@@ -23,20 +23,20 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO')  ")
+    //@PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO')  ")
     @QueryMapping
     public Optional<Users> getUserById(@Argument String id) {
 
         return userService.getUserById(id);
     }
 
-    @PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') ")
+    //@PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') ")
     @QueryMapping
     public List<Users> getAllUsers() {
         return userService.getAllUsers();
     }
 
-    @PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO')  ")
+    //@PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO')  ")
     @MutationMapping
     public Users createUser(@Argument UserRequest userRequest) {
         return userService.createUser(userRequest);
