@@ -33,7 +33,11 @@ public class AnalysisServiceImpl implements AnalisysService {
         newAnalysis.setNotes(analysisRequest.getNotes());
         newAnalysis.setAnalysisType(analysisRequest.getAnalysisType());
         newAnalysis.setResults(analysisRequest.getResults());
-        newAnalysis.setAnalysisDate(new Date());
+
+        DateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date formattedDateTime = dateTimeFormat.parse(analysisRequest.getAnalysisDate());
+
+        newAnalysis.setAnalysisDate(formattedDateTime);
 
         return analysisRepository.save(newAnalysis);
     }

@@ -17,7 +17,7 @@ public class AnalysisRequest {
     private String patientId;
     private String analysisType;
     private String results;
-    private Date analysisDate;
+    private String analysisDate;
     private String notes;
 
 }
