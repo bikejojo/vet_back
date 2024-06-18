@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class AnalysisController {
@@ -35,9 +36,14 @@ public class AnalysisController {
     //@PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') or hasRole('CLIENTE') ")
     @QueryMapping
     public List<Analysis> getAnalysisByIdPatient(@Argument String id) {
-        return analysisService.getAnalysisByIdPatient(id);
+        List<Analysis> analyses = analysisService.getAnalysisByIdPatient(id);
+        analyses.forEach(System.out::println);  // Añadir para verificar los datos
+        return analyses.stream()
+                .peek(analysis -> {
+                    if (analysis.getPatientId() == null || analysis.getAnalysisType() == null || analysis.getResults() == null) {
+                        System.err.println("Datos inválidos: " + analysis);
+                    }
+                })
+                .collect(Collectors.toList());
     }
-
-
-
 }

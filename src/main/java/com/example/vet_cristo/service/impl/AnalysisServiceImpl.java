@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -51,10 +52,35 @@ public class AnalysisServiceImpl implements AnalisysService {
     }
 
 
-    @Override
+   /* @Override
     public List<Analysis> getAnalysisByIdPatient(String id) {
         return analysisRepository.getAnalysisByPatientId(id);
-    }
+    }*/
+   @Override
+   public List<Analysis> getAnalysisByIdPatient(String id) {
+     /*  List<Analysis> analyses = analysisRepository.getAnalysisByPatientId(id);
+       // Filtrar registros incompletos
+       return analyses.stream()
+               .filter(a -> a.getPatientId() != null && a.getAnalysisType() != null && a.getResults() != null)
+               .collect(Collectors.toList());
+   }*/
 
-
+       List<Analysis> analyses = analysisRepository.getAnalysisByPatientId(id);
+       analyses.forEach(System.out::println);  // Esto debería imprimir todos los análisis encontrados
+       for (Analysis analysis : analyses) {
+           System.out.println("Análisis encontrado: " + analysis);
+           if (analysis.getPatientId() == null) {
+               analysis.setPatientId("Unknown");
+           }
+           if (analysis.getAnalysisType() == null) {
+               analysis.setAnalysisType("Unknown");
+           }
+           if (analysis.getResults() == null) {
+               analysis.setResults("Unknown");
+           }
+       }
+       return analyses.stream()
+               .filter(a -> a.getPatientId() != null && a.getAnalysisType() != null && a.getResults() != null)
+               .collect(Collectors.toList());
+   }
 }

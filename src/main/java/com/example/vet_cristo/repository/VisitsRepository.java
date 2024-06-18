@@ -15,4 +15,7 @@ public interface VisitsRepository extends MongoRepository<Visits, String> {
 
     @Query("{ 'idDoctor' : ?0 }")
     List<Visits> getVisitsByIdDoctor(String idDoctor);
+
+    @Query("{ 'idPatient' : ?0 }")
+    List<Visits> findByIdPatient(String idPatient);
 }

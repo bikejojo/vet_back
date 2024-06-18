@@ -9,11 +9,12 @@ type Query {
     getAllVisits: [Visits]
     getVisitsByReserved(reserved: Boolean!): [Visits]
     getVisitsByDoctor(idDoctor: String!): [Visits]
+    getVisitsByPatientId(id: ID!): [Visits]
     getConsultationsByIdPatient(id: ID!): [Consultations]
     getAllVaccines: [Vaccine]
-    getVaccineByIdPatient(id: ID!): Vaccine
+    getVaccineByIdPatient(id: ID!): [Vaccine]
     getAllAnalysis: [Analysis]
-    getAnalysisByIdPatient(id: ID!): Analysis
+    getAnalysisByIdPatient(id: ID!): [Analysis]
 }
 
 type Mutation {
@@ -138,7 +139,7 @@ input ConsultationsRequest {
 }
 
 type Vaccine {
-    id: ID
+    id: ID!
     patientId: String!
     vaccineName: String!
     administeredDate: String
@@ -155,7 +156,7 @@ input VaccineRequest {
 }
 
 type Analysis {
-    id: ID
+    id: ID!
     patientId: String!
     analysisType: String!
     results: String!
@@ -164,7 +165,7 @@ type Analysis {
 }
 
 input AnalysisRequest {
-    id: ID
+    id: ID!
     patientId: String!
     analysisType: String!
     results: String!

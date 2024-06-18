@@ -46,6 +46,11 @@ public class VisitsController {
         return visitsService.getVisitsByIdDoctor(idDoctor);
     }
 
+    @QueryMapping
+    public List<Visits> getVisitsByPatientId(@Argument String id) {
+        return visitsService.getVisitsByPatientId(id);
+    }
+
     //@PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') or hasRole('CLIENTE') ")
     @QueryMapping
     public List<Visits> getVisitsByReserved(@Argument Boolean reserved) {

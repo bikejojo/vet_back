@@ -1,4 +1,5 @@
 package com.example.vet_cristo.service.impl;
+import com.example.vet_cristo.model.Analysis;
 import com.example.vet_cristo.model.Vaccine;
 import com.example.vet_cristo.repository.VaccineRepository;
 import com.example.vet_cristo.service.VaccineService;
@@ -13,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -67,8 +69,24 @@ public class VaccineServiceImpl implements VaccineService {
 
     @Override
     public List<Vaccine> getVaccineByIdPatient(String id) {
-        return vaccineRepository.getVaccineByPatientId(id);
+       // return vaccineRepository.getVaccineByPatientId(id);
+        List<Vaccine> analyses = vaccineRepository.getVaccineByPatientId(id);
+        analyses.forEach(System.out::println);  // Esto debería imprimir todos los análisis encontrados
+        for (Vaccine analysis : analyses) {
+            System.out.println("Análisis encontrado: " + analysis);
+            if (analysis.getPatientId() == null) {
+                analysis.setPatientId("Unknown");
+            }
+            if (analysis.getVaccineName() == null) {
+                analysis.setVaccineName("Unknow");
+            }
+            if (analysis.getDoses() == 0) {
+                analysis.setDoses(0);
+            }
+        }
+        return analyses.stream()
+                .filter(a -> a.getPatientId() != null && a.getVaccineName() != null && a.getDoses() != 0)
+                .collect(Collectors.toList());
     }
-
 
 }

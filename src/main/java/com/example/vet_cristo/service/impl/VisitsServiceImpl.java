@@ -79,5 +79,8 @@ public class VisitsServiceImpl implements VisitsService {
         return visitsRepository.getVisitsByIdDoctor(id);
     }
 
-
+    @Override
+    public List<Visits> getVisitsByPatientId(String patientId) {
+        return visitsRepository.findByIdPatient(patientId);
+    }
 }

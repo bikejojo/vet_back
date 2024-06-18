@@ -1,6 +1,7 @@
 package com.example.vet_cristo.controller;
 
 
+import com.example.vet_cristo.model.Analysis;
 import com.example.vet_cristo.model.Consultations;
 import com.example.vet_cristo.model.Vaccine;
 import com.example.vet_cristo.service.VaccineService;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Controller;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class VaccineController {
@@ -38,7 +40,17 @@ public class VaccineController {
     //@PreAuthorize("hasRole('ADMINISTRADOR') or hasRole('VETERINARIO') or hasRole('CLIENTE') ")
     @QueryMapping
     public List<Vaccine> getVaccineByIdPatient(@Argument String id) {
-        return vaccineService.getVaccineByIdPatient(id);
+
+        //return vaccineService.getVaccineByIdPatient(id);
+        List<Vaccine> analyses = vaccineService.getVaccineByIdPatient(id);
+        analyses.forEach(System.out::println);  // Añadir para verificar los datos
+        return analyses.stream()
+                .peek(vaccine -> {
+                    if (vaccine.getPatientId() == null || vaccine.getVaccineName() == null || vaccine.getAdministeredDate() == null|| vaccine.getNextAdministeredDate() == null || vaccine.getDoses() == 0 ) {
+                        System.err.println("Datos inválidos: " + vaccine);
+                    }
+                })
+                .collect(Collectors.toList());
     }
 
 }

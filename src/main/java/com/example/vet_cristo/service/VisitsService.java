@@ -20,4 +20,5 @@ public interface VisitsService {
     List<Visits> getVisitsByReserve(Boolean reserved);
 
     List<Visits> getVisitsByIdDoctor(String id);
+    List<Visits> getVisitsByPatientId(String patientId);
 }
